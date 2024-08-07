@@ -1,15 +1,31 @@
-import { createStore } from "vuex";
+import { createRouter, createWebHistory } from "vue-router";
+import EventList from "../views/EventList.vue";
+import EventCreate from "../views/EventCreate.vue";
+import EventShow from "../views/EventShow.vue";
 
-export default createStore({
-  state: {
-    counter: 0
+const routes = [
+  {
+    path: "/events",
+    name: "events",
+    component: EventList,
   },
-  getters: {},
-  mutations: {
-    INCREASE_COUNTER(state , value) {
-      state.counter += value
-    }
+  {
+    path: "/event-create",
+    name: "eventCreate",
+    component: EventCreate,
   },
-  actions: {},
-  modules: {},
+  {
+    path: "/event-show/:id",
+    name: "eventShow",
+    component: EventShow,
+    props: true,
+  },
+];
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
 });
+
+export default router;
+
